@@ -17,23 +17,22 @@ const useStyles = makeStyles({
         fontSize: 14,
     },
     pos: {
-        marginBottom: 12,
+        marginBottom: 20,
     },
 });
 
 const UICard = (
     (props) => {
-        const classes = useStyles();
-        const { message, temp } = props
-        console.log(temp);
+        const { data } = props
+        console.log(data);
         return (
-            <Card className={classes.card}>
+            <Card>
                 <CardContent>
-                    <Typography variant="h5" component="h2">
-                        {message}
+                    <Typography variant="h3" component="h2">
+                        {data.city}
                     </Typography>
-                    <Typography variant="body2" component="p">
-                        {temp !== undefined ? temp['temp'] : ''}
+                    <Typography variant="h4" component="p">
+                        {data.weather_data.main !== undefined ? data.weather_data.main['temp'] : ''} {data.units === 'Metric' ? ' ํC' : ' ํF'}
                     </Typography>
                 </CardContent>
             </Card>
