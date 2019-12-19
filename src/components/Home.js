@@ -4,6 +4,7 @@ import { TextField, Grid } from '@material-ui/core'
 import { UICard } from './common/MaterialUI';
 
 const BASE_URL = process.env.REACT_APP_API_ENDPOINT
+const APPID = process.env.APPID
 
 class Home extends React.Component {
     constructor(props) {
@@ -11,24 +12,39 @@ class Home extends React.Component {
 
         this.state = {
             city: 'Bangkok',
+            units: 'metric',
             weather_data: []
         };
 
-        this.onChnage = this.onChnage.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount() {
-        axios.get(BASE_URL + '/weather?q=Bangkok&units=imperial&APPID=870de8f88ccba7aee687b1741eecc8fa')
+        // &units=metric
+        axios.get(BASE_URL + `/weather?q='${this.state.city}'&units='${this.state.units}'&APPID='${APPID}'`)
             .then(({ data }) => {
                 this.setState(
                     { weather_data: data }
                 );
             })
-            .catch((err) => { })
+            .catch((err) => {
+                console.log(err);
+            })
     }
-    onChnage = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state);
+
+    onChange = async (e) => {
+        await axios.get(BASE_URL + `/weather?q='${e.target.value}'&units='${this.state.units}'&APPID='${APPID}'`)
+            .then(({ data }) => {
+                this.setState(
+                    {
+                        weather_data: data,
+                        [e.target.name]: e.target.value
+                    }
+                );
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     render() {

@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 const UICard = (
     (props) => {
         const classes = useStyles();
-        const bull = <span className={classes.bullet}>•</span>;
         const { message, temp } = props
         console.log(temp);
         return (
