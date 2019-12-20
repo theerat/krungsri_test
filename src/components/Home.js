@@ -107,13 +107,13 @@ class Home extends React.Component {
 
     getImageURL = async (description) => {
         let url = ''
-        if (description === 'few clouds') {
+        if (description.includes("clouds")) {
             url = '//ssl.gstatic.com/onebox/weather/64/partly_cloudy.png'
         }
-        else if (description === 'clear sky') {
+        else if (description.includes("sky")) {
             url = '//ssl.gstatic.com/onebox/weather/48/sunny.png'
         }
-        else if (description === 'heavy intensity rain' || description === 'rain' || description === 'moderate rain') {
+        else if (description.includes("rain")) {
             url = '//ssl.gstatic.com/onebox/weather/48/rain.png'
         }
         else {
