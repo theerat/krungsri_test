@@ -1,44 +1,38 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+import { Card, Grid } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
-    card: {
-        minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 20,
-    },
-});
-
 const UICard = (
     (props) => {
+        var cardStyle = {
+            display: 'block',
+            transitionDuration: '0.3s',
+        }
+
         const { data } = props
-        console.log(data);
         return (
-            <Card>
-                <CardContent>
-                    <Typography variant="h3" component="h2">
-                        {data.city}
-                    </Typography>
-                    <Typography variant="h4" component="p">
-                        {data.weather_data.main !== undefined ? data.weather_data.main['temp'] : ''} {data.units === 'Metric' ? ' ํC' : ' ํF'}
-                    </Typography>
-                </CardContent>
-            </Card>
+            <Grid>
+                <Card style={cardStyle}>
+                    <CardContent>
+                        <Typography variant="h3" component="h2">
+                            {<img src={data.description}></img>}
+                        </Typography>
+                        <Typography variant="h3" component="h2">
+                            {data.city}
+                        </Typography>
+                        <Typography variant="h4" component="p">
+
+                            อุณหภูมิ : {data.weather_data.main !== undefined ? data.weather_data.main['temp'] : ''} {data.units === 'Metric' ? ' ํC' : ' ํF'}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </Grid >
         )
     }
 )
+
+
 
 export {
     UICard,
