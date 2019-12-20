@@ -22,8 +22,8 @@ const UICard = (
                             {data.city}
                         </Typography>
                         <Typography variant="h4" component="p">
-
-                            อุณหภูมิ : {data.weather_data.main !== undefined ? data.weather_data.main['temp'] : ''} {data.units === 'Metric' ? ' ํC' : ' ํF'}
+                            อุณหภูมิ : {data.weather_data.main !== undefined ? data.weather_data.main['temp'] : ''} {data.units === 'Metric' ? ' ํC' : ' ํF'} <br></br>
+                            ความชื้น : {data.weather_data.main !== undefined ? data.weather_data.main['humidity'] : ''}
                         </Typography>
                     </CardContent>
                 </Card>
